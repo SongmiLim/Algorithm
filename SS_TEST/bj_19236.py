@@ -2,6 +2,20 @@
 """
 position의 배열은 범위가 0부터 시작함에 유의,, 
 이거때문에 시간을 엄청 잡아먹었다
+
+물고기의 이동 방향은 8가지 방향  => dx, dy
+상어는 (0,0)으로 시작
+물고기는 번호가 작은 물고기부터 순서대로 이동 => 반복문으로 물고기의 index 오름차순으로..
+이동 방향은 해당 방향으로 부터 반시계 방향
+
+1번 물고기부터 이동 시작
+if 이동하려는 좌표에 상어가 있으면:
+  45도 회전 후 해당 좌표와 서로 위치 change
+if graph 범위 벗어나는 위치면:
+  45도 회전
+else:
+  해당 좌표와 서로 위치 change
+  
 """
 import copy
 import sys
@@ -38,7 +52,7 @@ def move_fish(shark_x, shark_y, t_board):
           fish_x, fish_y = j, k
           break
           
-    if fish_x==-1 and fish_y==-1:
+    if fish_x==-1 and fish_y==-1:  # 해당 물고기가 없을 경우
       continue
     fish_pos = t_board[fish_x][fish_y][1]
     

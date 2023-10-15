@@ -1,7 +1,6 @@
 # 13460 구슬탈출 2
 from collections import deque
 
-
 def bfs(rx, ry, bx, by):
     queue = deque()
     queue.append((rx, ry, bx, by, 1))
@@ -39,7 +38,7 @@ def bfs(rx, ry, bx, by):
                     
             # if visited_r[nrx][nry] == 0 or visited_b[nbx][nby] == 0:
             if visited[nrx][nry][nbx][nby] == 0:
-                # chance += 1     # 이렇게 해주면 테케중에 에러나는게 있다
+                # chance += 1     # 이렇게 해주면 테케중에 에러나는게 있다. 왤까...
                 queue.append((nrx, nry, nbx, nby, chance+1))
                 # visited_r[nrx][nry] = 1
                 # visited_b[nbx][nby] = 1
@@ -54,7 +53,7 @@ def move(x, y, dx, dy):
     # 그러면 구멍을 지나칠 수 있으니 나의 위치가 구멍일 땐 빠져나온다
     # == "." 으로 조건을 줘도 되지만 다음 위치가 'O'인지 '#'인지 여부를 확인하느
     # 조건을 더 줘야한다
-    while board[x+dx][y+dy] != "#" and board[x][y] != 'O':  # 조건 설정이 핵심
+    while board[x+dx][y+dy] != "#" and board[x][y] != 'O': 
         x += dx
         y += dy
         count += 1
