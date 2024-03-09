@@ -1,22 +1,16 @@
 #include <vector>
 #include <iostream>
-#include <set>
+#include <algorithm>
 
 using namespace std;
 
 vector<int> solution(vector<int> arr)
 {
     vector<int> answer;
-    vector<int> temp;
-    temp = arr;
-    temp.push_back(-1);
-
-    for (int i = 0; i < temp.size()-1; i++) {
-        if (temp[i] == temp[i + 1]) {
-            continue;
-        }
-        answer.push_back(temp[i]);
-    }
+    answer = arr;
+    vector<int>::iterator pos = unique(answer.begin(), answer.end());
+    answer.erase(pos, answer.end());
+    //answer.erase(unique(answer.begin(), answer.end()), answer.end());
 
     return answer;
 }
