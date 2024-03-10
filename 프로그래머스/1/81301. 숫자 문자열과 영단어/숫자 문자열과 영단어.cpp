@@ -1,22 +1,38 @@
 #include <string>
 #include <vector>
-#include <regex>
+#include <map>
+
 using namespace std;
 
 int solution(string s) {
-    int answer = 0;
+    string answer;
 
-    s = regex_replace(s, regex("zero"), "0");
-    s = regex_replace(s, regex("one"), "1");
-    s = regex_replace(s, regex("two"), "2");
-    s = regex_replace(s, regex("three"), "3");
-    s = regex_replace(s, regex("four"), "4");
-    s = regex_replace(s, regex("five"), "5");
-    s = regex_replace(s, regex("six"), "6");
-    s = regex_replace(s, regex("seven"), "7");
-    s = regex_replace(s, regex("eight"), "8");
-    s = regex_replace(s, regex("nine"), "9");
-    
-    answer = stoi(s);
-    return answer;
+    map <string, char> m;
+    m["zero"] = '0';
+    m["one"] = '1';
+    m["two"] = '2';
+    m["three"] = '3';
+    m["four"] = '4';
+    m["five"] = '5';
+    m["six"] = '6';
+    m["seven"] = '7';
+    m["eight"] = '8';
+    m["nine"] = '9';
+
+    string temp;
+    for (int i = 0; i < s.size(); i++) {
+        if (isdigit(s[i])) {
+            answer += s[i];
+            //temp.clear();
+        }
+        else {
+            temp += s[i];
+            if (m[temp] != 0) {
+                answer += m[temp];
+                temp.clear();
+            }
+        }
+    }
+
+    return stoi(answer);
 }
