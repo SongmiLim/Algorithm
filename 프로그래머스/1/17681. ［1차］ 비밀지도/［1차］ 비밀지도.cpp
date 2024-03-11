@@ -16,7 +16,7 @@ vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
                 ans = " " + ans;
             else
                 ans = "#" + ans;
-            arr1[i] /= 2;
+            arr1[i] = arr1[i] >> 1; // arr1[i] /= 2;
         }
         answer.push_back(ans);
     }
