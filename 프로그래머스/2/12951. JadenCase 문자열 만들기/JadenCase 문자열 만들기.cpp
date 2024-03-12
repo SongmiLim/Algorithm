@@ -1,37 +1,26 @@
 #include <string>
 #include <vector>
-#include <sstream>
-#include <cmath>
-
-using namespace std;
-
-#include <string>
-#include <vector>
 #include <algorithm>
 using namespace std;
 
-/*string solution(string s) {
+string solution(string s) {
     string answer = "";
-    vector <int > temp;
 
-    int index = 0;
-    int current;
-    current = s.find(' ');
-
-    while (current != string::npos) {
-        int num = stoi(s.substr(index, current - index));
-        temp.push_back(num);
-        index = current + 1;
-        current = s.find(' ', index);
+    s[0] = toupper(s[0]);
+    for (int i = 1; i < s.size(); i++) {
+        if (s[i - 1] == ' ') {
+            s[i] = toupper(s[i]);
+        }
+        else {
+            s[i] = tolower(s[i]);
+        }
     }
-    temp.push_back(stoi(s.substr(index, current - index)));
-    sort(temp.begin(), temp.end());
-    answer = to_string(temp[0]) + " " + to_string(temp[temp.size() - 1]);
+    answer = s;
 
     return answer;
-}*/
+}
 
-string solution(string s) {
+/*string solution(string s) {
     string answer = "";
     vector<string> tmp;
     string buf;
@@ -65,4 +54,4 @@ string solution(string s) {
     }
 
     return answer;
-}
+}*/
