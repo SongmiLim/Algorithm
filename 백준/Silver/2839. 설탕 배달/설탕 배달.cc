@@ -6,10 +6,7 @@ int N;
 int solve() {
 	int cnt = 0;
 	while (true) {
-	
 		if (N % 5 == 0) {
-			if (N == 0)
-				break;
 			cnt += N / 5;
 			break;
 		}
@@ -21,8 +18,6 @@ int solve() {
 			cnt = -1;
 			break;
 		}
-
-
 	}
 	return cnt;
 }
