@@ -65,9 +65,9 @@ void change_ball() {
 	int cnt = 1;
 	vector<int> group_list;
 	bool flag = false;
-	
-	if (ball_num == 0)
-		return;
+
+	//if (ball_num == 0)
+	//	return;
 
 	while (cy != 0 || cx != 0) {
 		visited[cy][cx] = true;
@@ -124,7 +124,7 @@ bool explode_ball() {
 		}
 
 		// 다음 구슬과 번호가 같으면 explode_list에 해당 구슬 좌표 추가
-		if (map[cy][cx] == map[ny][nx] && map[cy][cx]>0) {
+		if (map[cy][cx] == map[ny][nx] && map[cy][cx] > 0) {
 			cnt++;
 			explode_ball_list.push_back({ cy, cx });
 		}
@@ -142,11 +142,11 @@ bool explode_ball() {
 			cnt = 1;
 			explode_ball_list.clear();
 		}
-		
-		if (ball_num == 0) {
-			flag = false;
-			break;
-		}
+
+		//if (ball_num == 0) {
+		//	flag = false;
+		//	break;
+		//}
 
 		cy = ny; cx = nx; dir = nd;
 	}
@@ -203,7 +203,7 @@ void game(int d, int s) {
 				ball_num++;
 		}
 	}
-	
+
 	if (ball_num == 0)
 		return;
 
@@ -214,7 +214,7 @@ void game(int d, int s) {
 		if (map[magic_y][magic_x] > 0) {
 			map[magic_y][magic_x] = -1;
 			ball_num--;
-		} 
+		}
 	}
 
 	// 구슬이 이동하지 않을 때 까지 이동 반복 
