@@ -4,7 +4,6 @@
 using namespace std;
 
 int N, M;
-bool visited[10001] = { false, };
 vector <int> num_list;
 vector <int> answer;
 
@@ -16,14 +15,10 @@ void solution(int index, int cnt) {
 		return;
 	}
 
-	for (int i = index; i < num_list.size();i++) {
-		if (!visited[num_list[i]]) {
-			answer.push_back(num_list[i]);
-			visited[num_list[i]] = true;
-			solution(i + 1, cnt + 1);
-			answer.pop_back();
-			visited[num_list[i]] = false;
-		}
+	for (int i = index; i < num_list.size(); i++) {
+		answer.push_back(num_list[i]);
+		solution(i + 1, cnt + 1);
+		answer.pop_back();
 	}
 }
 
