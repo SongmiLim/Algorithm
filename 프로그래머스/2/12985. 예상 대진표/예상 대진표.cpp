@@ -4,15 +4,17 @@ using namespace std;
 
 int solution(int n, int a, int b)
 {
-    int answer = 1;
+    int answer = 0;
+    a--; 
+    b--;
     
     while(true) {
-        if(abs(a - b) == 1 && ((a+b) % 4 == 3)) {
+        if(a == b) {
             break;
         }
         
-        a = (a-1)/2 + 1;
-        b = (b-1)/2 + 1;
+        a = a/2;
+        b = b/2;
         answer++;
     }
     
