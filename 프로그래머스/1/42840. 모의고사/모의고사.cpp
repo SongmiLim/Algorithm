@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 int get_score(vector<int> answers, vector<int> student_method) {
@@ -26,14 +27,10 @@ vector<int> get_max_score(vector<int> answers) {
     temp.push_back(get_score(answers, {2, 1, 2, 3, 2, 4, 2, 5}));
     temp.push_back(get_score(answers, {3, 3, 1, 1, 2, 2, 4, 4, 5, 5}));
     
-    int max = -1;
+    int max = *max_element(temp.begin(), temp.end());
+    
     for(int i=0;i<temp.size();i++) {
         if(max == temp[i]){
-            max_score.push_back(i+1);
-        }
-        else if(max < temp[i]){
-            max = temp[i];
-            max_score.clear();
             max_score.push_back(i+1);
         }
     }
