@@ -29,6 +29,7 @@ int get_word_index(string word) {
     
     for(auto&a : index_words) {
         string s = "";
+        
         for(int i=0;i<a.size();i++) {
             s+=a[i];
         }
@@ -36,6 +37,7 @@ int get_word_index(string word) {
         if(s == word){
             return cnt;
         }
+        
         cnt++;
     } 
 }
@@ -43,13 +45,6 @@ int get_word_index(string word) {
 int solution(string word) {
     int answer = 0;
     get_all_words({"A", "E", "I", "O", "U"});
-    
-    for(auto&a : index_words) {
-        for(int i=0;i<a.size();i++) {
-            //cout<<a[i];
-        }
-        //cout<<"\n";
-    }
     
     answer = get_word_index(word);
     
