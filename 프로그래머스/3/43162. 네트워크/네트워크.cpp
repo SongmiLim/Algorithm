@@ -15,7 +15,7 @@ void bfs(vector<vector<int>> computers, int computer_index) {
         int index = q.front();
         q.pop();
         
-        for(int i=0;i<computers.size();i++) {
+        for(int i=0;i<computers[index].size();i++) {
             if(computers[index][i] == 1 && !visited[i]) {
                 visited[i] = true;
                 q.push(i);
