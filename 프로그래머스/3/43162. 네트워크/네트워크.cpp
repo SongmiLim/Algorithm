@@ -1,36 +1,43 @@
 #include <string>
 #include <vector>
-#include <queue>
-
+#include <iostream>
 #define MAX 200
+
 using namespace std;
 
+vector<vector<int>> graph;
 bool visited[MAX];
-void bfs(vector<vector<int>> computers, int computer_index) {
-    queue <int> q;
-    q.push(computer_index);
-    visited[computer_index] = true;
+
+void dfs(int node) {
+    visited[node] = true;
     
-    while(!q.empty()) {
-        int index = q.front();
-        q.pop();
-        
-        for(int i=0;i<computers[index].size();i++) {
-            if(computers[index][i] == 1 && !visited[i]) {
-                visited[i] = true;
-                q.push(i);
+    for(int i=0;i<graph[node].size();i++) {
+        if(!visited[graph[node][i]]) {
+            dfs(graph[node][i]);
+        }
+    }    
+}
+
+int solution(int n, vector<vector<int>> computers) {
+    int answer = 0;
+    graph.resize(n, vector<int>(0));
+    
+    for(int i=0;i<computers.size();i++) {
+        for(int j=0;j<computers[i].size();j++) {
+            if(computers[i][j] == 1){
+                graph[i].push_back(j);
+                graph[j].push_back(i);
             }
         }
     }
-}
     
-int solution(int n, vector<vector<int>> computers) {
-    int answer = 0;
-    for(int i=0;i<computers.size();i++) {
-        if(!visited[i]) {
-            bfs(computers, i);
-            answer++;
+    for(int i=0;i<graph.size();i++) {
+        for(int j=0;j<graph[i].size();j++) {
+            if(!visited[graph[i][j]]) {
+                dfs(graph[i][j]);
+                ++answer;
+            }
         }
-    }
+   }
     return answer;
 }
