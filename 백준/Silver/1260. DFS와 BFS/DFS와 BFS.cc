@@ -3,68 +3,74 @@
 #include <queue>
 #include <algorithm>
 
-int N, M, V;
-std::vector<int> graph[1001];
-bool visited_dfs[1001];
-bool visited_bfs[1001];
-std::vector<int> bfs_result;
-std::vector<int> dfs_result;
+#define MAX 1001
 
-void dfs(int start_node) {
-	visited_dfs[start_node] = true;
-	dfs_result.push_back(start_node);
-	
-		for (int adj_node : graph[start_node]) {
-		if (!visited_dfs[adj_node]) {
-			dfs(adj_node);
+int n, m, v;
+std::vector<std::vector<int>> graph;
+std::vector<int> dfs_result;
+std::vector<int> bfs_result;
+bool dfs_visited[MAX] = { false };
+bool bfs_visited[MAX] = { false };
+
+void DFS(int node) {
+	dfs_result.push_back(node);
+	dfs_visited[node] = true;
+
+	for (int i = 0; i < graph[node].size(); i++) {
+		int next_node = graph[node][i];
+		if (!dfs_visited[next_node]) {
+			DFS(next_node);
 		}
 	}
 	return;
 }
 
-void bfs(int start_node) {
-	std::queue <int> q;
-	visited_bfs[start_node] = true;
+void BFS(int start_node) {
+	std::queue<int> q;
+
 	q.push(start_node);
+	bfs_visited[start_node] = true;
 
 	while (!q.empty()) {
-		int n = q.front();
-		bfs_result.push_back(n);
+		int node = q.front();
+		bfs_result.push_back(node);
 		q.pop();
-		
-		for (int i = 0; i < graph[n].size(); i++) {
-			int adj_node = graph[n][i];
-			
-			if (!visited_bfs[adj_node]) {
-				visited_bfs[adj_node] = true;
-				q.push(adj_node);
+
+		for (int i = 0; i < graph[node].size(); i++) {
+			int next_node = graph[node][i];
+			if (!bfs_visited[next_node]) {
+				q.push(next_node);
+				bfs_visited[next_node] = true;
 			}
 		}
 	}
 }
 
 int main() {
-	std::cin >> N >> M >> V;
-	for (int i = 0; i < M; i++) {
+	std::cin >> n >> m >> v;
+	graph.resize(MAX, std::vector<int>());
+
+	for (int i = 0; i < m; i++) {
 		int a, b;
 		std::cin >> a >> b;
 		graph[a].push_back(b);
 		graph[b].push_back(a);
 	}
-
-	for (int i = 0; i <= N; i++) {
+	for (int i = 0; i <= n; i++) {
 		sort(graph[i].begin(), graph[i].end());
 	}
 
-	bfs(V);
-	dfs(V);
+	DFS(v);
+	BFS(v);
 
-	for (int node:dfs_result) {
-		std::cout << node << " ";
+	for (auto a : dfs_result) {
+		std::cout << a << " ";
 	}
 	std::cout << std::endl;
-	for (int node : bfs_result) {
-		std::cout << node << " ";
+
+	for (auto a : bfs_result) {
+		std::cout << a << " ";
 	}
+
 	return 0;
 }
